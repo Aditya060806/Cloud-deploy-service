@@ -1,501 +1,438 @@
 # ☁️ CLOUD RUN LAUNCHPAD
-## HOST GUIDE – STEP 3 ONWARD (DETAILED LIVE EXECUTION)
+### 🎓 Student Step-by-Step Deployment Guide
+
+> Follow every step carefully. By the end, your app will be **live on the internet** — accessible by anyone in the world.
 
 ---
 
-## 📋 SESSION OVERVIEW
+## 📋 What You Will Do Today
 
 | Step | Activity | Time |
 |------|----------|------|
-| Step 3 | Cloud Run Setup | 1:35 – 1:45 |
-| Step 4 | Create Cloud Run Service | 1:45 – 1:50 |
-| Step 5 | Container Image Setup | 1:50 – 1:55 |
-| Step 6 | Configure Basic Settings | 1:55 – 2:00 |
-| Step 7 | Public Access Settings | 2:00 – 2:05 |
-| Step 8 | Deploy Application | 2:05 – 2:10 |
-| Step 9 | Access Live URL | 2:10 – 2:15 |
-| Step 10 | Test Live Deployment | 2:15 – 2:20 |
-| Step 11 | Open Logs | 2:20 – 2:25 |
+| Step 3 | Open Cloud Run | 1:35 – 1:45 |
+| Step 4 | Create a Cloud Run Service | 1:45 – 1:50 |
+| Step 5 | Set Up Your Container Image | 1:50 – 1:55 |
+| Step 6 | Configure Name & Region | 1:55 – 2:00 |
+| Step 7 | Make Your App Public | 2:00 – 2:05 |
+| Step 8 | Deploy Your App | 2:05 – 2:10 |
+| Step 9 | Open Your Live URL | 2:10 – 2:15 |
+| Step 10 | Test Your Deployment | 2:15 – 2:20 |
+| Step 11 | View Logs | 2:20 – 2:25 |
 | Step 12 | Generate Live Logs | 2:25 – 2:30 |
-| Step 13 | Redeploy / Update | 2:30 – 2:40 |
-| Step 14 | Cloud Challenge / Competition | 2:40 – 2:55 |
-| Step 15 | Closing | 2:55 – 3:00 |
+| Step 13 | Redeploy / Update Your App | 2:30 – 2:40 |
+| Step 14 | Cloud Challenge | 2:40 – 2:55 |
+| Step 15 | Wrap Up | 2:55 – 3:00 |
 
 ---
 
 ---
 
-# STEP 3 – CLOUD RUN SETUP
-### ⏱ Time: 1:35 – 1:45
+# STEP 3 – OPEN CLOUD RUN
+### ⏱ 1:35 – 1:45
 
----
+### 📌 What to Do
 
-## 🎤 Opening Line
+1. Open **[console.cloud.google.com](https://console.cloud.google.com)** in your browser
+2. Make sure you are signed in with your **Google account**
+3. Make sure your **project** is selected in the top bar (you should see a project name next to "Google Cloud")
+4. Click the **search bar** at the very top of the page
+5. Type: `Cloud Run`
+6. Click on **Cloud Run** from the dropdown results
+7. You should now see the **Cloud Run dashboard**
 
-> "Now that everyone has their billing/project ready, we're moving to the most exciting part—actually deploying your application."
+### 🧠 What is Cloud Run?
 
-*[Pause 2 seconds]*
+Cloud Run is Google's **serverless** deployment platform. That means:
 
-> "From this point onward, you're going to work like real cloud engineers."
+- You do **not** need to set up any server
+- You do **not** need to install anything
+- You just hand Google your application → Google runs it for you automatically
+- You only pay when your app is actually being used
 
----
-
-## ✅ Student Action
-
-1. Go to the **top search bar** in Google Cloud Console
-2. Type: **Cloud Run**
-3. Click on the **Cloud Run service**
-
----
-
-## 📖 Concept Explanation
-
-**What is Cloud Run?**
-
-> "Cloud Run is Google's serverless deployment platform."
-
-Break it down point by point:
-
-- "Normally if you want to host an app, you need servers."
-- "Servers require setup, maintenance, updates, monitoring."
-- "Cloud Run removes all of that."
-- "You just give Google your application, and Google runs it for you."
-
----
-
-## 💡 Analogy
-
-> "Think of Cloud Run like **Uber for servers** — you don't own the car/server, you just use it when needed."
-
----
-
-## 🙋 Crowd Check
-
-> "Everyone on Cloud Run dashboard? Raise your hand."
-
-⚠️ **Wait. Do NOT proceed until 80–90% of students are ready.**
+> 💡 **Think of it like Uber for servers** — you don't own a car, you just request a ride when you need it. Same idea: you don't own a server, you just use Google's when needed.
 
 ---
 
 ---
 
-# STEP 4 – CREATE CLOUD RUN SERVICE
-### ⏱ Time: 1:45 – 1:50
+# STEP 4 – CREATE A CLOUD RUN SERVICE
+### ⏱ 1:45 – 1:50
 
----
+### 📌 What to Do
 
-## 🎤 What You Say
+1. On the Cloud Run dashboard, click the **"+ Create Service"** button at the top
+2. A new configuration page will open
 
-> "Now we're going to create your first deployed cloud service."
+### 🧠 What is a "Service"?
 
----
+In Cloud Run, a **service** = your deployed app.
 
-## ✅ Student Action
-
-1. Click **Create Service**
-
----
-
-## 📖 Concept Explanation
-
-- "A **service** means your deployed application."
-- "Whenever users open your website/app, they are interacting with your service."
-
----
-
-## 🔥 Hype Line
-
-> "You are not just clicking buttons — you're literally preparing infrastructure."
+- Every time someone visits your website or app URL, they are hitting your **Cloud Run service**
+- The service is always running, always ready to respond
+- You are not just clicking buttons — you are **setting up real cloud infrastructure**
 
 ---
 
 ---
 
-# STEP 5 – CONTAINER IMAGE SETUP
-### ⏱ Time: 1:50 – 1:55
+# STEP 5 – SET UP YOUR CONTAINER IMAGE
+### ⏱ 1:50 – 1:55
 
----
+### 📌 What to Do
 
-## ✅ Student Action
-
-Under **Deployment Source**, choose:
-
-> ✅ **Deploy one revision from an existing container image**
-
-Paste the following image URL:
+1. On the Create Service page, look for the **"Deployment"** section at the top
+2. Select the option:
+   > ✅ **Deploy one revision from an existing container image**
+3. In the **Container image URL** field, paste exactly this:
 
 ```
 gcr.io/cloudrun/hello
 ```
 
----
+4. Press **Tab** or click elsewhere to confirm it
 
-## 📖 Concept Explanation
+### 🧠 What is a Container Image?
 
-**What is this image?**
+A **container** is a packaged version of your app that includes:
 
-> "This is a pre-built application made by Google."
-> "This app is packaged in something called a **container**."
+| What's inside | Why it matters |
+|---------------|----------------|
+| Your code | The actual application logic |
+| Libraries | Tools your code needs to run |
+| Dependencies | Packages the app depends on |
+| Runtime | The environment (e.g. Node.js, Python) |
 
-**What is a container?**
+> 💡 **Think of it like carrying your entire kitchen with you** — no matter where you go, you can cook the same food. A container ensures your app runs exactly the same everywhere.
 
-> "A container is like a zipped package containing:
-> - Code
-> - Libraries
-> - Dependencies
-> - Runtime"
-
-> "It ensures your app runs the same everywhere."
-
----
-
-## 💡 Analogy
-
-> "Like carrying your **entire kitchen** with you so food can be made anywhere."
+The image `gcr.io/cloudrun/hello` is a **ready-made demo app** built by Google — perfect for your first deployment.
 
 ---
 
 ---
 
-# STEP 6 – CONFIGURE BASIC SETTINGS
-### ⏱ Time: 1:55 – 2:00
+# STEP 6 – CONFIGURE NAME & REGION
+### ⏱ 1:55 – 2:00
 
----
+### 📌 What to Do
 
-## ✅ Student Action
+Scroll down to find the following fields and fill them in:
 
-Configure the following fields:
-
-### Service Name
+#### 1. Service Name
 ```
 hello-service
 ```
+> Type this exactly, no spaces. You can also use your own name like `my-first-app`
 
-### Region
+#### 2. Region
+From the dropdown, select:
 ```
-asia-south1  (Mumbai)
+asia-south1 (Mumbai)
 ```
 
----
+### 🧠 Why Does This Matter?
 
-## 📖 Concept Explanation
+**Service Name** — This is the unique identity of your app in Google Cloud. Other services and tools use this name to reference your deployment.
 
-**Service Name:**
-> "This is simply the identity of your deployed app."
+**Region** — This is the **physical location** of Google's datacenter where your app will run.
 
-**Region:**
-> "This decides **where physically** your app runs."
-> "If you choose Mumbai, your app runs in Google's Mumbai datacenter."
+- `asia-south1` = Mumbai, India
+- If Indian users access your app and it's hosted in Mumbai, the data travels a **short distance** → your app loads **faster**
+- If you chose `us-central1`, data travels halfway around the world → **slower for Indian users**
 
----
-
-## 🙋 Engagement Question
-
-> "Why should Indian users choose Mumbai instead of US?"
-
-*[Wait for student responses, then explain:]*
-
-**Answer:** **Latency** — data travels a shorter distance, so the app loads faster for Indian users.
+> 💡 This concept is called **Latency** — the time it takes for data to travel from server to user. Closer server = lower latency = faster app.
 
 ---
 
 ---
 
-# STEP 7 – PUBLIC ACCESS SETTINGS
-### ⏱ Time: 2:00 – 2:05
+# STEP 7 – MAKE YOUR APP PUBLIC
+### ⏱ 2:00 – 2:05
 
----
+### 📌 What to Do
 
-## ✅ Student Action
+1. Scroll down to find the **"Authentication"** section
+2. Select:
+   > ✅ **Allow unauthenticated invocations**
+3. Make sure this option is checked/selected
 
-Enable:
+### 🧠 Why Do We Need to Do This?
 
-> ✅ **Allow unauthenticated invocations**
+By default, Google Cloud **blocks public access** to all new deployments for security reasons. Only you (the owner) can access it.
 
----
+But since we want our app to be publicly accessible to anyone with the link, we must **explicitly allow it**.
 
-## 📖 Concept Explanation
-
-- "By default, Google keeps deployments **private** for security."
-- "But today we want everyone to access your app."
-- "So we make it **public**."
-
----
-
-## 🔎 Clarification
-
-> "This means anyone with your link can open it."
+> ⚠️ In real company apps, you would keep this private and require login tokens (called **Bearer tokens** or **OAuth**). For today's demo, we make it public.
 
 ---
 
 ---
 
-# STEP 8 – DEPLOY APPLICATION
-### ⏱ Time: 2:05 – 2:10
+# STEP 8 – DEPLOY YOUR APP
+### ⏱ 2:05 – 2:10
 
----
+### 📌 What to Do
 
-## ✅ Student Action
+1. Scroll to the bottom of the page
+2. Review your settings one last time:
+   - Container image: `gcr.io/cloudrun/hello` ✅
+   - Service name: `hello-service` ✅
+   - Region: `asia-south1` ✅
+   - Authentication: Allow unauthenticated ✅
+3. Click the **"Create"** / **"Deploy"** button
+4. Wait — a loading spinner will appear. **Do not close the tab.**
 
-Click:
+### 🧠 What is Google Doing Right Now?
 
-> 🚀 **Deploy**
+While you wait, here is exactly what is happening behind the scenes:
 
----
+| What Google is doing | What it means |
+|----------------------|---------------|
+| Pulling container image | Downloading your app package |
+| Allocating CPU & Memory | Reserving compute power for your app |
+| Setting up networking | Creating a route so the internet can reach your app |
+| Launching the container | Starting your app inside Google's datacenter |
+| Assigning a public URL | Giving your app a permanent web address |
 
-## 📖 While It Loads — Explain What's Happening
+> This entire process takes **30–90 seconds**. In real companies, this same process is triggered automatically every time a developer pushes new code.
 
-> "What Google is doing right now:"
+### ✅ How to Know It's Done
 
-- Creating compute resources
-- Setting up networking
-- Allocating memory / CPU
-- Launching your container
-- Exposing a public endpoint
-
----
-
-## 🔥 VERY IMPORTANT MOMENT — Build the Hype
-
-> "This is **EXACTLY** what happens in real companies when engineers deploy apps."
-
----
-
----
-
-# STEP 9 – ACCESS LIVE URL
-### ⏱ Time: 2:10 – 2:15
-
----
-
-## ✅ Student Action
-
-Once deployment is complete:
-
-1. Click the **generated URL** shown in the Cloud Run dashboard
-
----
-
-## 🎤 What You Say
-
-> "Congratulations — your application is now **LIVE on the internet.**"
-
-*[Pause. Let that sink in.]*
-
----
-
-## 🔥 Hype Line
-
-> "Anyone in the world with this link can access what you just built."
+A **green checkmark** ✅ will appear next to your service name. You will also see a **blue URL** appear at the top of the service details page.
 
 ---
 
 ---
 
-# STEP 10 – TEST LIVE DEPLOYMENT
-### ⏱ Time: 2:15 – 2:20
+# STEP 9 – OPEN YOUR LIVE URL
+### ⏱ 2:10 – 2:15
+
+### 📌 What to Do
+
+1. Once the green checkmark appears, look at the top of the service page
+2. You will see a URL like:
+   ```
+   https://hello-service-xxxxxxxxxx-el.a.run.app
+   ```
+3. **Click that URL**
+4. A new tab will open — you will see your live deployed app
+
+### 🎉 Congratulations — Your App is LIVE
+
+You just deployed a real application to the internet. This URL is:
+
+- **Permanent** — it won't disappear
+- **Public** — anyone with the link can open it
+- **Globally accessible** — someone in Japan, USA, or Brazil can open it right now
+- **Hosted on Google's infrastructure** — not your laptop, not a USB drive — Google's actual servers
+
+> Copy your URL and save it somewhere. You'll need it in the next steps.
 
 ---
 
-## ✅ Student Action
+---
 
-1. Refresh the deployed page **5 times**
-2. Open it on your **phone**
-3. **Share the link** with a friend
+# STEP 10 – TEST YOUR DEPLOYMENT
+### ⏱ 2:15 – 2:20
+
+### 📌 What to Do
+
+1. **On your laptop:** Refresh your deployed app page **5 times**
+2. **On your phone:** Open a browser → paste your URL → hit enter
+3. **Share it:** Send your URL to a friend on WhatsApp or any chat app
+4. Ask them to open it — it should work on their device too
+
+### 🧠 What This Proves
+
+| Test | What it confirms |
+|------|-----------------|
+| Refreshing multiple times | App is stable and always responds |
+| Opening on phone | App is accessible on any device |
+| Friend opens it | App is publicly reachable from any network |
+
+> Your app is not running on your computer. It's running on Google's servers in Mumbai. **Your laptop can be off and the app will still work.**
 
 ---
 
-## 📖 Concept Explanation
-
-> "This proves your app is:
-> - Hosted publicly
-> - Globally accessible
-> - Running on cloud infrastructure"
-
 ---
 
----
+# STEP 11 – VIEW YOUR APP LOGS
+### ⏱ 2:20 – 2:25
 
-# STEP 11 – OPEN LOGS
-### ⏱ Time: 2:20 – 2:25
+### 📌 What to Do
 
----
+1. Go back to the **Cloud Run dashboard** (use your browser's back button or navigate to Cloud Run)
+2. Click on your service name: **hello-service**
+3. At the top of the service detail page, click the **"Logs"** tab
+4. You should see a list of log entries — these are **real-time records** of every request your app received
 
-## ✅ Student Action
+### 🧠 What are Logs?
 
-1. Go back to the **Cloud Run dashboard**
-2. Click the **Logs** tab
+Logs are **records of everything that happens** in your application:
 
----
+- Every time someone visits your app → **a log entry is created**
+- Errors and crashes → **logged automatically**
+- Backend processing → **logged**
+- Security events → **logged**
 
-## 📖 Concept Explanation
+> 💡 **Think of logs like CCTV footage for your app.** Just like a security camera records everyone who enters a building, logs record every request that reaches your app.
 
-> "Logs record **everything happening** in your application."
+**Columns you'll see in the log:**
 
-Examples of what logs capture:
-- User visits
-- Errors
-- Crashes
-- Backend activity
-
----
-
-## 💡 Analogy
-
-> "Logs are **CCTV footage** for your app."
+| Column | What it means |
+|--------|---------------|
+| Timestamp | Exact time the request happened |
+| Severity | INFO, WARNING, ERROR |
+| HTTP Method | GET, POST, etc. |
+| Status | 200 = success, 404 = not found, 500 = server error |
+| Latency | How long the request took to complete |
 
 ---
 
 ---
 
 # STEP 12 – GENERATE LIVE LOGS
-### ⏱ Time: 2:25 – 2:30
+### ⏱ 2:25 – 2:30
 
----
+### 📌 What to Do
 
-## ✅ Student Action
+1. Open your deployed app URL in a new tab
+2. **Refresh it 5–10 times rapidly**
+3. Switch back to the **Logs tab** in Cloud Run
+4. Watch new log entries appear **in real time**
+5. Click on any log entry to expand it and see full details
 
-1. Refresh the deployed page **5–10 times**
-2. Return to the **Logs tab**
-3. Watch new entries appear in real time
+### 🧠 What You're Seeing
 
----
+Every refresh = 1 HTTP GET request = 1 log entry.
 
-## 📖 Concept Explanation
+This is exactly how real engineers monitor production applications:
 
-> "Every request creates a log entry."
-> "This is how engineers **debug and monitor** apps in production."
+- **Check if users are actually visiting** → look at log volume
+- **Debug why something broke** → filter logs by ERROR severity
+- **Measure performance** → look at latency values in logs
+- **Track suspicious activity** → look for unusual request patterns
 
----
-
----
-
-# STEP 13 – REDEPLOY / UPDATE
-### ⏱ Time: 2:30 – 2:40
-
----
-
-## ✅ Student Action
-
-Click:
-
-> **Edit & Deploy New Revision**
-
-Make a change to **any one** of the following:
-- Service name
-- Region
-- Scaling settings
-
----
-
-## 📖 Concept Explanation
-
-- "When developers improve apps, they don't rebuild everything."
-- "They deploy **updated revisions**."
-
----
-
-## 🔑 Key Concept: Revisions
-
-> "Every deployment creates a **new version** (revision) of your app."
-> "This allows rollback, traffic splitting, and safe updates."
+> In real companies, logs are fed into tools like **Google Cloud Logging**, **Datadog**, or **Splunk** for advanced analysis.
 
 ---
 
 ---
 
-# STEP 14 – CLOUD CHALLENGE / COMPETITION
-### ⏱ Time: 2:40 – 2:55
+# STEP 13 – REDEPLOY / UPDATE YOUR APP
+### ⏱ 2:30 – 2:40
 
----
+### 📌 What to Do
 
-## 🎤 Announcement
+1. From the service detail page, click **"Edit & Deploy New Revision"** at the top
+2. You will see the same configuration form as before
+3. Make **one of the following changes**:
 
-> "Now let's see who became cloud engineers fastest."
+   **Option A — Change the container:**
+   > Leave image as is (we don't have a new one yet — that's for a future session)
 
----
+   **Option B — Change scaling settings:**
+   > Scroll down → find **"Capacity"** → change **"Maximum number of instances"** from default to `3`
 
-## 🏆 Challenge Tasks
+   **Option C — Add an environment variable:**
+   > Scroll to **"Container"** tab → find **"Environment Variables"** → click **"+ Add Variable"**
+   > - Name: `APP_ENV`
+   > - Value: `production`
 
-Complete **any 3** of the following:
+4. Click **"Deploy"**
+5. Wait for the new revision to deploy (green checkmark)
 
-| # | Task |
-|---|------|
-| 1 | Deploy in another region |
-| 2 | Generate 20 log entries |
-| 3 | Redeploy successfully with a new revision |
-| 4 | Help a teammate finish their deployment |
+### 🧠 What is a Revision?
 
----
+Every time you click Deploy, Cloud Run creates a **new revision** — a versioned snapshot of your app.
 
-## 🎁 Reward
+| Revision | What changed |
+|----------|-------------|
+| Revision 1 | Original deployment |
+| Revision 2 | Your update just now |
 
-> Top performers win **stickers** 🏅
+**Why revisions are powerful:**
 
----
+- **Rollback** — If revision 2 breaks things, you can instantly switch back to revision 1
+- **Traffic splitting** — You can send 90% of users to revision 1 and 10% to revision 2 (A/B testing)
+- **Zero downtime updates** — New revision starts before old one stops
 
----
-
-# STEP 15 – CLOSING
-### ⏱ Time: 2:55 – 3:00
-
----
-
-## 🙋 Reflection Questions
-
-Ask the audience:
-
-1. "What did you **learn** today?"
-2. "Was cloud **easier** than expected?"
-3. "What **surprised** you?"
-
-*[Take 2–3 responses from students]*
-
----
-
-## 🎤 Final Line
-
-> "Today you deployed your **first real cloud-hosted application.**"
-
-*[Pause]*
-
-> "You've officially taken your **first step into cloud engineering.**"
+> This is called a **Blue-Green Deployment** strategy — used by companies like Google, Netflix, Amazon.
 
 ---
 
 ---
 
-## 📌 HOST QUICK REFERENCE CARD
+# STEP 14 – CLOUD CHALLENGE
+### ⏱ 2:40 – 2:55
 
-| Step | Key Action | Key Concept | Analogy |
-|------|-----------|-------------|---------|
-| 3 | Search Cloud Run | Serverless platform | Uber for servers |
-| 4 | Create Service | Service = deployed app | — |
-| 5 | Paste container image | Container = packaged app | Kitchen you carry |
-| 6 | Set name & region | Latency & geography | — |
-| 7 | Allow unauthenticated | Public vs private access | — |
-| 8 | Deploy | Infrastructure provisioning | Real company deploy |
-| 9 | Open live URL | App is live on internet | — |
-| 10 | Test on phone & share | Global accessibility | — |
-| 11 | Open Logs tab | Observability | CCTV for your app |
-| 12 | Refresh & watch logs | Monitoring & debugging | — |
-| 13 | Edit & redeploy | Revisions & updates | — |
-| 14 | Challenge tasks | Practice & competition | — |
-| 15 | Reflection & close | Celebrate achievement | — |
+### 🏆 Your Mission
+
+Complete **any 3** of the tasks below. First to finish all 4 wins.
+
+| # | Task | How to do it |
+|---|------|-------------|
+| 1 | **Deploy in a different region** | Edit & Deploy New Revision → change Region to `us-central1` |
+| 2 | **Generate 20 log entries** | Refresh your app URL 20+ times → check Logs tab |
+| 3 | **Redeploy successfully** | Make any change → Deploy → wait for green checkmark on Revision 2+ |
+| 4 | **Help a teammate** | Walk someone through their deployment until their URL is live |
+
+### 🎁 Reward
+
+Top performers win **stickers** 🏅
+
+> 📸 Screenshot your deployed app URL and the green checkmark as proof!
+
+---
+
+---
+
+# STEP 15 – WRAP UP
+### ⏱ 2:55 – 3:00
+
+### 🎓 What You Accomplished Today
+
+| What you did | What it means in the real world |
+|---|---|
+| Deployed a container to Cloud Run | Shipped an application to production |
+| Configured region & service settings | Set up cloud infrastructure |
+| Made it publicly accessible | Configured network security policies |
+| Viewed and generated logs | Monitored a live production system |
+| Deployed a new revision | Performed a zero-downtime update |
+
+### 🚀 What's Next?
+
+Now that you know how to deploy to Cloud Run, here's what real engineers do next:
+
+1. **Build their own app** — instead of `gcr.io/cloudrun/hello`, they push their own Docker image
+2. **Connect a custom domain** — instead of `*.run.app`, they use their own domain like `myapp.com`
+3. **Set up CI/CD pipelines** — auto-deploy on every git push using GitHub Actions or Cloud Build
+4. **Add monitoring & alerts** — get notified when error rates spike
+
+### 🔗 Useful Links
+
+| Resource | Link |
+|----------|------|
+| Cloud Run Docs | https://cloud.google.com/run/docs |
+| Cloud Run Quickstart | https://cloud.google.com/run/docs/quickstarts |
+| Docker & Containers | https://docs.docker.com/get-started/ |
+| Google Cloud Free Tier | https://cloud.google.com/free |
+
+---
 
 ---
 
 ## ⚠️ COMMON ISSUES & FIXES
 
-| Issue | Fix |
-|-------|-----|
-| Student can't find Cloud Run | Guide: Search bar → type "Cloud Run" → click first result |
-| Deployment stuck / failing | Check container image URL is exactly `gcr.io/cloudrun/hello` |
-| URL shows error after deploy | Wait 30–60 seconds and refresh; container may still be starting |
-| Logs tab empty | Refresh the deployed app URL first, then return to logs |
-| "Permission denied" on deploy | Ensure billing is enabled and correct project is selected |
-| Can't enable unauthenticated | Check IAM permissions; may need to grant `allUsers` role manually |
+| Problem | Solution |
+|---------|----------|
+| Can't find Cloud Run | Go to search bar at top → type `Cloud Run` → click first result |
+| Container image URL not accepted | Make sure you paste exactly: `gcr.io/cloudrun/hello` (no spaces, no quotes) |
+| Deployment stuck for more than 3 minutes | Refresh the page — if still stuck, delete and recreate the service |
+| URL opens but shows error | Wait 30–60 seconds and try again — container may still be warming up |
+| Logs tab is empty | First visit your app URL a few times, then return to logs |
+| "Permission denied" error | Make sure billing is enabled on your project and you're in the right project |
+| Can't enable unauthenticated invocations | Your org policy may block it — ask the host for help |
 
 ---
 
-*Guide prepared for Cloud Run Launchpad Workshop — Step 3 to 15*
+*☁️ Cloud Run Launchpad — Student Guide | Steps 3 to 15*
